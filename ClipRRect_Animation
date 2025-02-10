@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text('3D List', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold))),
+        title: Center(child: Text('Clippers', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold))),
       ),
       body: Center(
         child: ClipRRect(
