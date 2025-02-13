@@ -1,0 +1,72 @@
+// Mapping List to Widget
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'detail_Page.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage>{
+  var arrData = [
+    {'name': 'Vikash Singh', 'mobno': '5695848689', 'unread': '2'},
+    {'name': 'Aman Singh', 'mobno': '4857689845', 'unread': 1},
+    {'name': 'Shivam Singh', 'mobno': '79007689845', 'unread': 1},
+    {'name': 'Vishnu Singh', 'mobno': '4857687575', 'unread': 7},
+    {'name': 'Aniket Singh', 'mobno': '48577989845', 'unread': 4},
+    {'name': 'Shroubh Singh', 'mobno': '4857689845', 'unread': 2},
+    {'name': 'Palak Sharma', 'mobno': '48679689845', 'unread': 5},
+    {'name': 'Aveneet Kaur', 'mobno': '4857689845', 'unread': 3},
+    {'name': 'Aniee girl', 'mobno': '38579845', 'unread': 1},
+    {'name': 'Any type', 'mobno': '9886689845', 'unread': 0},
+  ];
+
+  @override
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Mapping List to Widget')),
+        backgroundColor: Colors.indigo,
+      ),
+      body: Container(
+        child: ListView(
+          children: arrData.map((value) =>
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text(value['name'].toString()),
+              subtitle: Text(value['mobno'].toString()),
+              trailing: CircleAvatar(
+                radius: 12,
+                backgroundColor: Colors.greenAccent,
+                child: Text(value['unread'].toString())
+              ),
+            )
+          ).toList(),
+        ),
+      ),
+    );
+  }
+}
