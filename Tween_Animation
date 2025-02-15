@@ -1,0 +1,73 @@
+// Tween Animation
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'detail_Page.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin{
+  late Animation animation;                        // intialize after
+  late Animation colorAnimation;
+  late AnimationController animationController;    // late = for intialize later
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    animationController = AnimationController(vsync: this,
+        duration: Duration(seconds: 4));
+    animation = Tween(begin: 200.0, end: 100.0).animate(animationController);
+    colorAnimation = ColorTween(begin: Colors.blue, end: Colors.redAccent).animate(animationController);  // color Animation
+    animationController.addListener(() {
+      print(animation.value);
+      setState(() {
+
+      });
+    });
+
+    animationController.forward();
+  }
+
+  @override
+  Widget build(BuildContext context){
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Tween Animation')),
+        backgroundColor: Colors.indigo,
+      ),
+      body: Center(
+        child: Container(
+          width: animation.value,
+          height: animation.value,
+          color: colorAnimation.value,
+        ),
+      ),
+    );
+  }
+}
